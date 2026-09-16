@@ -1,0 +1,26 @@
+# Virtual Environment
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+
+# MLflow
+mlruns/
+
+# Dataset
+data/raw/
+
+# Models
+/models/
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+# Local MLflow database
+mlflow.db

@@ -1,22 +1,35 @@
 """
-Logging configuration for the Loan Risk Prediction project.
+Production-grade Logger Module
 
-This module provides a reusable project-wide logger that writes logs
-to both the console and a log file.
+Author: Ujwal
+Project: Intelligent Loan Risk Assessment Platform
 """
 
+# ==================================================
+# Standard Library Imports
+# ==================================================
+
 import logging
-from pathlib import Path
+from logging.handlers import RotatingFileHandler
+
+# ==================================================
+# Local Imports
+# ==================================================
 
 from src.config import LOG_DIR
 
-# ------------------------------------------------------------------
-# Create logs directory if it doesn't exist
-# ------------------------------------------------------------------
+# ==================================================
+# Log Configuration
+# ==================================================
 
-LOG_DIR.mkdir(parents=True, exist_ok=True)
+LOG_DIR.mkdir(
+    parents=True,
+    exist_ok=True,
+)
 
 LOG_FILE = LOG_DIR / "loan_risk_prediction.log"
+
+DEFAULT_LOG_LEVEL = logging.INFO
 
 
 def get_logger(name: str) -> logging.Logger:
@@ -26,7 +39,7 @@ def get_logger(name: str) -> logging.Logger:
     Parameters
     ----------
     name : str
-        Name of the logger (usually __name__).
+        Logger name.
 
     Returns
     -------
@@ -40,28 +53,43 @@ def get_logger(name: str) -> logging.Logger:
     if logger.handlers:
         return logger
 
-    logger.setLevel(logging.INFO)
+    logger.setLevel(DEFAULT_LOG_LEVEL)
 
     formatter = logging.Formatter(
-        fmt="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+        fmt=(
+            "%(asctime)s | %(levelname)s | "
+            "%(name)s | %(filename)s:%(lineno)d | %(message)s"
+        ),
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
-    # -------------------------
+    # ==================================================
     # Console Handler
-    # -------------------------
+    # ==================================================
 
     console_handler = logging.StreamHandler()
+
+    console_handler.setLevel(DEFAULT_LOG_LEVEL)
+
     console_handler.setFormatter(formatter)
 
-    # -------------------------
-    # File Handler
-    # -------------------------
+    # ==================================================
+    # Rotating File Handler
+    # ==================================================
 
-    file_handler = logging.FileHandler(LOG_FILE)
+    file_handler = RotatingFileHandler(
+        filename=LOG_FILE,
+        maxBytes=5 * 1024 * 1024,      # 5 MB
+        backupCount=5,
+        encoding="utf-8",
+    )
+
+    file_handler.setLevel(DEFAULT_LOG_LEVEL)
+
     file_handler.setFormatter(formatter)
 
     logger.addHandler(console_handler)
+
     logger.addHandler(file_handler)
 
     logger.propagate = False

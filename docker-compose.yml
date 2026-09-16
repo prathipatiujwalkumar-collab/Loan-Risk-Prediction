@@ -1,0 +1,74 @@
+services:
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: loan-risk-api
+    ports:v
+      - "8000:8000"
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+    depends_on:
+      mlflow:
+        condition: service_started
+
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    container_name: loan-risk-dashboard
+    ports:
+      - "8501:8501"
+
+    depends_on:
+      api:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: loan-risk-mlflow
+
+    ports:
+      - "5001:5000"
+
+    volumes:
+      - mlflow_data:/mlruns
+
+    command:
+      - mlflow
+      - server
+      - --host
+      - 0.0.0.0
+      - --port
+      - "5000"
+      - --backend-store-uri
+      - sqlite:////mlruns/mlflow.db
+      - --default-artifact-root
+      - /mlruns/artifacts
+
+    restart: unless-stopped
+
+
+volumes:
+
+  mlflow_data:
