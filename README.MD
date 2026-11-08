@@ -1,20 +1,18 @@
 # 🏦 Production-Grade Loan Risk Prediction System
 
 ### An end-to-end Machine Learning & MLOps project for predicting loan repayment risk
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white" />
+  <img src="https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange?logo=scikitlearn&logoColor=white" />
+  <img src="https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white" />
+  <img src="https://img.shields.io/badge/Experiment%20Tracking-MLflow-0194E2?logo=mlflow&logoColor=white" />
+  <img src="https://img.shields.io/badge/Deployment-Docker-2496ED?logo=docker&logoColor=white" />
+  <img src="https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white" />
+</p>
 
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/Python-3.11+-blue?logo=python&logoColor=white](https://img.shields.io/badge/Python-3.11+-blue?logo=python\&logoColor=white)" />
-&#x20; \<img src="[https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange?logo=scikitlearn&logoColor=white](https://img.shields.io/badge/Machine%20Learning-Scikit--learn-orange?logo=scikitlearn\&logoColor=white)" />
-&#x20; \<img src="[https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi\&logoColor=white)" />
-&#x20; \<img src="[https://img.shields.io/badge/Experiment%20Tracking-MLflow-0194E2?logo=mlflow&logoColor=white](https://img.shields.io/badge/Experiment%20Tracking-MLflow-0194E2?logo=mlflow\&logoColor=white)" />
-&#x20; \<img src="[https://img.shields.io/badge/Deployment-Docker-2496ED?logo=docker&logoColor=white](https://img.shields.io/badge/Deployment-Docker-2496ED?logo=docker\&logoColor=white)" />
-&#x20; \<img src="[https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit&logoColor=white](https://img.shields.io/badge/Dashboard-Streamlit-FF4B4B?logo=streamlit\&logoColor=white)" />
-\</p>
-
-\<p align="center">
-&#x20; \<b>From raw loan application data to a deployable machine learning prediction system.\</b>
-\</p>
-
+<p align="center">
+  <b>From raw loan application data to a deployable machine learning prediction system.</b>
+</p>
 ---
 
 ## 📌 Project Overview
